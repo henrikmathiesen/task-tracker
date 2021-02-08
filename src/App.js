@@ -1,11 +1,9 @@
-import './App.css';
+import Header from './components/Header';
 
-function App() {
+const App = () => {
   return (
-    <div className="container App">
-      <header className="App-header">
-        <h1>Task Tracker</h1>
-      </header>
+    <div className="container">
+      <Header />
     </div>
   );
 }
