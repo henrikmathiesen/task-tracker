@@ -13,7 +13,7 @@ const Header = ({ onAddClick }) => {
                     <button className="btn btn-dark btn-block" onClick={onAddClick}>Add</button>
                 </div>
             </header>
-            <div className="row" aria-hidden="true">
+            <div className="row mb-4" aria-hidden="true">
                 <div className="col">
                     <hr />
                 </div>
