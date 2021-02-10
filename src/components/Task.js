@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FaTimes } from 'react-icons/fa';
 import './Task.css';
 
-const Task = ({ task, isLast }) => {
+const Task = ({ task, isLast, onDeleteClick }) => {
 
     const { reminder, day, text } = task;
 
@@ -12,7 +12,7 @@ const Task = ({ task, isLast }) => {
                 <div className="Task-day">{day.toDateString()}</div>
                 <div>
                     {reminder && <span className="badge badge-dark mr-2 Task-reminder">Reminder</span>}
-                    <button className="btn btn-sm text-danger" aria-label="Delete">
+                    <button className="btn btn-sm text-danger" aria-label="Delete" onClick={() => { onDeleteClick(task.id) }}>
                         <span aria-hidden="true"><FaTimes /></span>
                     </button>
                 </div>
@@ -26,7 +26,8 @@ const Task = ({ task, isLast }) => {
 };
 
 Task.propTypes = {
-    task: PropTypes.object.isRequired
+    task: PropTypes.object.isRequired,
+    onDeleteClick: PropTypes.func.isRequired
 };
 
 Task.defaultProps = {
