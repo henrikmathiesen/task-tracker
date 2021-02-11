@@ -31,4 +31,8 @@ const deleteTask = (tasks, id) => {
     return tasks.filter(t => t.id !== id);
 };
 
-export { getTasks, deleteTask };
+const setReminderOnTask = (tasks, id) => {
+    return tasks.map(t => t.id === id ? {...t, reminder: !t.reminder } : t);
+};
+
+export { getTasks, deleteTask, setReminderOnTask };

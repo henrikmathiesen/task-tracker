@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Task from './Task';
 
-const Tasks = ({ tasks, onDeleteClick }) => {
+const Tasks = ({ tasks, onDeleteClick, onReminderDoubleClick }) => {
 
     const isLast = (t) => {
         const lastIndex = tasks.length - 1;
@@ -10,7 +10,7 @@ const Tasks = ({ tasks, onDeleteClick }) => {
 
     return (
         <>
-            { tasks.map(t => <Task key={t.id} task={t} isLast={isLast(t)} onDeleteClick={onDeleteClick} />)}
+            { tasks.map(t => <Task key={t.id} task={t} isLast={isLast(t)} onDeleteClick={onDeleteClick} onReminderDoubleClick={onReminderDoubleClick} />)}
         </>
     )
 
@@ -18,7 +18,8 @@ const Tasks = ({ tasks, onDeleteClick }) => {
 
 Tasks.propTypes = {
     tasks: PropTypes.array.isRequired,
-    onDeleteClick: PropTypes.func.isRequired
+    onDeleteClick: PropTypes.func.isRequired,
+    onReminderDoubleClick: PropTypes.func.isRequired
 }
 
 export default Tasks;
