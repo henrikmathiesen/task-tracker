@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="container py-sm-3 App-container">
       <Header onAddClick={onAddClick} />
-      <Tasks tasks={tasks} onDeleteClick={onDeleteClick} />
+      {!!tasks.length ? <Tasks tasks={tasks} onDeleteClick={onDeleteClick} /> : <p>No tasks to show. Add one?</p>}
     </div>
   );
 }
