@@ -27,12 +27,23 @@ const getTasks = () => {
 
 };
 
+const submitTask = (tasks, task) => {
+    const id = Math.floor(Math.random() * 10000);
+    const day = new Date(task.day);
+    
+    const newTask = { ...task };
+    newTask.id = id;
+    newTask.day = day;
+
+    return [...tasks, newTask];
+};
+
 const deleteTask = (tasks, id) => {
     return tasks.filter(t => t.id !== id);
 };
 
 const setReminderOnTask = (tasks, id) => {
-    return tasks.map(t => t.id === id ? {...t, reminder: !t.reminder } : t);
+    return tasks.map(t => t.id === id ? { ...t, reminder: !t.reminder } : t);
 };
 
-export { getTasks, deleteTask, setReminderOnTask };
+export { getTasks, submitTask, deleteTask, setReminderOnTask };

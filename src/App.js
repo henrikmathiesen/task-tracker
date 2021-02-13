@@ -3,7 +3,7 @@ import Header from './components/Header';
 import AddTask from './components/AddTask';
 import Tasks from './components/Tasks';
 import './App.css';
-import { getTasks, deleteTask, setReminderOnTask } from './util/tasks';
+import { getTasks, submitTask, deleteTask, setReminderOnTask } from './util/tasks';
 
 const App = () => {
 
@@ -14,7 +14,7 @@ const App = () => {
   };
 
   const onSubmit = (task) => {
-    console.log('onSubmit', task);
+    setTasks(submitTask(tasks, task));
   };
 
   const onDeleteClick = (id) => {
