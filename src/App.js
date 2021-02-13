@@ -13,6 +13,10 @@ const App = () => {
     console.log('App, onAddClick');
   };
 
+  const onSubmit = (task) => {
+    console.log('onSubmit', task);
+  };
+
   const onDeleteClick = (id) => {
     setTasks(deleteTask(tasks, id));
   };
@@ -24,7 +28,7 @@ const App = () => {
   return (
     <div className="container py-sm-3 App-container">
       <Header onAddClick={onAddClick} />
-      <AddTask />
+      <AddTask onSubmit={onSubmit} />
       {!!tasks.length ? <Tasks tasks={tasks} onDeleteClick={onDeleteClick} onReminderDoubleClick={onReminderDoubleClick} /> : <p>No tasks to show. Add one?</p>}
     </div>
   );
