@@ -9,10 +9,10 @@ const AddTask = () => {
             </div>
             <div className="form-group row">
                 <div className="col-sm-6">
-                    <label htmlFor="day">Day (required)</label>
+                    <label htmlFor="day">Day (required, YYYY-MM-DD)</label>
                     <input type="text" id="day" className="form-control" required />
                 </div>
-                <div className="align-self-end col-sm-6 mt-3 mt-sm-0 text-center">
+                <div className="col-sm-6 align-self-end mt-3 mt-sm-0 text-center">
                     <div className="custom-control custom-switch">
                         <input type="checkbox" id="reminder" className="custom-control-input" />
                         <label htmlFor="reminder" className="custom-control-label">Reminder</label>
