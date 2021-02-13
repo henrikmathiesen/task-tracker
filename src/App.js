@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Header from './components/Header';
+import AddTask from './components/AddTask';
 import Tasks from './components/Tasks';
 import './App.css';
 import { getTasks, deleteTask, setReminderOnTask } from './util/tasks';
@@ -23,6 +24,7 @@ const App = () => {
   return (
     <div className="container py-sm-3 App-container">
       <Header onAddClick={onAddClick} />
+      <AddTask />
       {!!tasks.length ? <Tasks tasks={tasks} onDeleteClick={onDeleteClick} onReminderDoubleClick={onReminderDoubleClick} /> : <p>No tasks to show. Add one?</p>}
     </div>
   );
