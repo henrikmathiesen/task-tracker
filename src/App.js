@@ -32,7 +32,7 @@ const App = () => {
     <div className="container py-sm-3 App-container">
       <Header onAddClick={onAddClick} />
       <div className={`App-add-task ${showAddTask ? 'App-show-add-task' : 'App-hide-add-task'}`}>
-        <AddTask onSubmit={onSubmit} />
+        <AddTask onSubmit={onSubmit} showAddTask={showAddTask} />
       </div>
       {!!tasks.length ? <Tasks tasks={tasks} onDeleteClick={onDeleteClick} onReminderDoubleClick={onReminderDoubleClick} /> : <p>No tasks to show. Add one?</p>}
     </div>

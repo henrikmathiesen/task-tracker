@@ -7,6 +7,8 @@
 .App-add-task {
     transition: max-height 0.25s linear;
     overflow: hidden;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .App-add-task.App-hide-add-task {
