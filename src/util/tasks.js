@@ -27,10 +27,21 @@ const getTasks = () => {
 
 };
 
+const generateId = (tasks) => { 
+    if (!tasks.length) {
+        return 1;
+    }
+
+    const currentIds = tasks.map(t => t.id);
+    const lastId = currentIds.pop();
+
+    return lastId + 1;
+};
+
 const submitTask = (tasks, task) => {
-    const id = Math.floor(Math.random() * 10000);
+    const id = generateId(tasks);
     const day = new Date(task.day);
-    
+
     const newTask = { ...task };
     newTask.id = id;
     newTask.day = day;

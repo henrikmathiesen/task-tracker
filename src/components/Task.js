@@ -7,7 +7,7 @@ const Task = ({ task, isLast, onDeleteClick, onReminderDoubleClick }) => {
     const { reminder, day, text, id } = task;
 
     return (
-        <div className={`card ${!isLast && 'mb-3'} ${reminder && 'border-dark'}`} onDoubleClick={() => { onReminderDoubleClick(id) }}>
+        <div className={`card ${!isLast && 'mb-3'} ${reminder && 'border-dark'}`} onDoubleClick={() => { onReminderDoubleClick(id) }} data-id={id}>
             <div className="card-header d-flex justify-content-between align-items-center">
                 <div className="Task-day">{day.toDateString()}</div>
                 <div>
