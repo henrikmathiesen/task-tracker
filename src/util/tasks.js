@@ -3,8 +3,8 @@ const getTasks = () => {
     return [
 
         {
-            id: 1,
-            text: 'This is task 1',
+            id: 3,
+            text: 'This is task 3',
             day: new Date(2021, 3 - 1, 20),
             reminder: true
         },
@@ -17,8 +17,8 @@ const getTasks = () => {
         },
 
         {
-            id: 3,
-            text: 'This is task 3',
+            id: 1,
+            text: 'This is task 1',
             day: new Date(2021, 7 - 1, 15),
             reminder: false
         },
@@ -33,7 +33,7 @@ const generateId = (tasks) => {
     }
 
     const currentIds = tasks.map(t => t.id);
-    const lastId = currentIds.pop();
+    const lastId = currentIds[0];
 
     return lastId + 1;
 };
@@ -46,7 +46,7 @@ const submitTask = (tasks, task) => {
     newTask.id = id;
     newTask.day = day;
 
-    return [...tasks, newTask];
+    return [newTask, ...tasks];
 };
 
 const deleteTask = (tasks, id) => {
