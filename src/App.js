@@ -26,8 +26,6 @@ const App = () => {
     setTasks(setReminderOnTask(tasks, id));
   };
 
-  // TODO: toggle form with animation. Height. Bootstraps classes for width. Also WCAG, no tab to form
-
   return (
     <div className="container py-sm-3 App-container">
       <Header onAddClick={onAddClick} />

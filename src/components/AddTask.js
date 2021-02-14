@@ -1,25 +1,41 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './AddTask.css';
 
 
 const AddTask = ({ onSubmit, showAddTask }) => {
 
+    let textInputRef = useRef(null);
+
     const [text, setText] = useState('');
     const [day, setDay] = useState('');
     const [reminder, setReminder] = useState(false);
 
-    const onFormSubmit = (e) => {
-        e.preventDefault();
-
-        // TODO: validation
-
-        onSubmit({ text, day, reminder });
-
+    const clearForm = () => {
         setText('');
         setDay('');
         setReminder(false)
+    };
+
+    const onFormSubmit = (e) => {
+        e.preventDefault();
+
+        // TODO: validation, and date validation (see other projects). Also render date in nice format on Task.
+
+        onSubmit({ text, day, reminder });
+
+        clearForm();
     }
+
+    useEffect(() => {
+        if (showAddTask) {
+            setTimeout(() => {
+                textInputRef.current.focus();
+            }, 500);
+        } else {
+            clearForm();
+        }
+    }, [showAddTask]);
 
     return (
         <form className="mb-5" noValidate onSubmit={onFormSubmit}>
@@ -27,7 +43,7 @@ const AddTask = ({ onSubmit, showAddTask }) => {
             <div className="row">
                 <div className="col-sm-6">
                     <label htmlFor="text">Task (required)</label>
-                    <textarea id="text" className="form-control AddTask-form-control-text" required disabled={!showAddTask} value={text} onChange={(e) => setText(e.target.value)}></textarea>
+                    <textarea id="text" className="form-control AddTask-form-control-text" required disabled={!showAddTask} value={text} onChange={(e) => setText(e.target.value)} ref={textInputRef}></textarea>
                 </div>
                 <div className="col-sm-6 mt-3 mt-sm-0">
                     <div className="row">
