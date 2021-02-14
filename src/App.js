@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div className="container py-sm-3 App-container">
-      <Header onAddClick={onAddClick} />
+      <Header onAddClick={onAddClick} showAddTask={showAddTask} />
       <div className={`App-add-task ${showAddTask ? 'App-show-add-task' : 'App-hide-add-task'}`}>
         <AddTask onSubmit={onSubmit} showAddTask={showAddTask} />
       </div>

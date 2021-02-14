@@ -1,7 +1,7 @@
 import './Header.css';
 import PropTypes from 'prop-types';
 
-const Header = ({ onAddClick }) => {
+const Header = ({ onAddClick, showAddTask }) => {
 
     return (
         <>
@@ -10,7 +10,7 @@ const Header = ({ onAddClick }) => {
                     <h1 className="m-0 text-danger Header-h1">Task Tracker</h1>
                 </div>
                 <div className="col-sm-4 align-self-center">
-                    <button className="btn btn-dark btn-block Header-add-button" onClick={onAddClick}>Add</button>
+                    <button className="btn btn-dark btn-block Header-add-button" onClick={onAddClick}>{!showAddTask ? 'Add' : 'Hide'}</button>
                 </div>
             </header>
             <div className="row mb-4" aria-hidden="true">
@@ -24,7 +24,8 @@ const Header = ({ onAddClick }) => {
 }
 
 Header.propTypes = {
-    onAddClick: PropTypes.func.isRequired
+    onAddClick: PropTypes.func.isRequired,
+    showAddTask: PropTypes.bool.isRequired
 };
 
 export default Header;
