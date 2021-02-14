@@ -3,3 +3,23 @@
         max-width: 960px;
     }
 }
+
+.App-add-task {
+    transition: max-height 0.25s linear;
+    overflow: hidden;
+}
+
+.App-add-task.App-hide-add-task {
+    max-height: 0;
+}
+
+.App-add-task.App-show-add-task {
+    max-height: 400px;
+}
+
+@media (min-width: 576px) { 
+    .App-add-task.App-show-add-task {
+        max-height: 260px;
+    }
+}
+

@@ -8,9 +8,10 @@ import { getTasks, submitTask, deleteTask, setReminderOnTask } from './util/task
 const App = () => {
 
   const [tasks, setTasks] = useState(getTasks());
+  const [showAddTask, toggleShowAddTask] = useState(false);
 
   const onAddClick = () => {
-    console.log('App, onAddClick');
+    toggleShowAddTask(!showAddTask);
   };
 
   const onSubmit = (task) => {
@@ -25,12 +26,14 @@ const App = () => {
     setTasks(setReminderOnTask(tasks, id));
   };
 
-  // TODO: toggle form with animation. Height. Bootstraps classes for width
+  // TODO: toggle form with animation. Height. Bootstraps classes for width. Also WCAG, no tab to form
 
   return (
     <div className="container py-sm-3 App-container">
       <Header onAddClick={onAddClick} />
-      <AddTask onSubmit={onSubmit} />
+      <div className={`App-add-task ${showAddTask ? 'App-show-add-task' : 'App-hide-add-task'}`}>
+        <AddTask onSubmit={onSubmit} />
+      </div>
       {!!tasks.length ? <Tasks tasks={tasks} onDeleteClick={onDeleteClick} onReminderDoubleClick={onReminderDoubleClick} /> : <p>No tasks to show. Add one?</p>}
     </div>
   );
