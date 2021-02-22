@@ -27,6 +27,8 @@ const App = () => {
   };
 
   // TODO: Save to localstorage , maybe pagination (do manually)
+  // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+  // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 
   return (
     <div className="container py-sm-3 App-container">
