@@ -26,8 +26,6 @@ const App = () => {
     setTasks(setReminderOnTask(tasks, id));
   };
 
-  // TODO: Save to localstorage , maybe pagination (do manually)
-
   return (
     <div className="container py-sm-3 App-container">
       <Header onAddClick={onAddClick} showAddTask={showAddTask} />

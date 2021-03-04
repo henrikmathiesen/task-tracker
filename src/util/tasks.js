@@ -17,13 +17,20 @@ const _saveToLocalStorage = (tasks) => {
 
 const getTasks = () => {
     const tasks = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-    return (tasks && JSON.parse(tasks)) || [];
 
+    if (!tasks) {
+        return [];
+    }
+
+    const parsedTasks = JSON.parse(tasks);
+    parsedTasks.forEach(t => t.day = new Date(t.day));
+
+    return parsedTasks;
 };
 
 const submitTask = (tasks, task) => {
     const newTask = { ...task, id: _generateId(tasks), day: new Date(task.day) };
-    
+
     const newTasks = [newTask, ...tasks];
     _saveToLocalStorage(newTasks);
 
