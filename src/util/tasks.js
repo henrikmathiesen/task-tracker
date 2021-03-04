@@ -1,33 +1,6 @@
-const getTasks = () => {
+const LOCAL_STORAGE_KEY = 'TaskTracker_tasks';
 
-    return [
-
-        {
-            id: 3,
-            text: 'This is task 3',
-            day: new Date(2021, 3 - 1, 20),
-            reminder: true
-        },
-
-        {
-            id: 2,
-            text: 'This is task 2',
-            day: new Date(2021, 5 - 1, 22),
-            reminder: true
-        },
-
-        {
-            id: 1,
-            text: 'This is task 1',
-            day: new Date(2021, 7 - 1, 15),
-            reminder: false
-        },
-
-    ];
-
-};
-
-const generateId = (tasks) => { 
+const _generateId = (tasks) => {
     if (!tasks.length) {
         return 1;
     }
@@ -38,23 +11,37 @@ const generateId = (tasks) => {
     return lastId + 1;
 };
 
+const _saveToLocalStorage = (tasks) => {
+    window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks));
+}
+
+const getTasks = () => {
+    const tasks = window.localStorage.getItem(LOCAL_STORAGE_KEY);
+    return (tasks && JSON.parse(tasks)) || [];
+
+};
+
 const submitTask = (tasks, task) => {
-    const id = generateId(tasks);
-    const day = new Date(task.day);
+    const newTask = { ...task, id: _generateId(tasks), day: new Date(task.day) };
+    
+    const newTasks = [newTask, ...tasks];
+    _saveToLocalStorage(newTasks);
 
-    const newTask = { ...task };
-    newTask.id = id;
-    newTask.day = day;
-
-    return [newTask, ...tasks];
+    return newTasks;
 };
 
 const deleteTask = (tasks, id) => {
-    return tasks.filter(t => t.id !== id);
+    const newTasks = tasks.filter(t => t.id !== id);
+    _saveToLocalStorage(newTasks);
+
+    return newTasks;
 };
 
 const setReminderOnTask = (tasks, id) => {
-    return tasks.map(t => t.id === id ? { ...t, reminder: !t.reminder } : t);
+    const newTasks = tasks.map(t => t.id === id ? { ...t, reminder: !t.reminder } : t);
+    _saveToLocalStorage(newTasks);
+
+    return newTasks;
 };
 
 export { getTasks, submitTask, deleteTask, setReminderOnTask };
