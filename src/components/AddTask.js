@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './AddTask.css';
+import { taskHasValidationError } from '../util/validateTask';
 
 
 const AddTask = ({ onSubmit, showAddTask }) => {
@@ -20,11 +21,14 @@ const AddTask = ({ onSubmit, showAddTask }) => {
     const onFormSubmit = (e) => {
         e.preventDefault();
 
-        // TODO: validation, and date validation (see other projects). Also render date in nice format on Task.
+        if (!taskHasValidationError({ text, day })) { 
+            onSubmit({ text, day, reminder });
+            clearForm();
+            return;
+        }
 
-        onSubmit({ text, day, reminder });
-
-        clearForm();
+        // TODO: show validation messages
+        console.log('ERROR', taskHasValidationError({ text, day }));
     }
 
     useEffect(() => {
