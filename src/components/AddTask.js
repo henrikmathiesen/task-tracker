@@ -27,7 +27,7 @@ const AddTask = ({ onSubmit, showAddTask }) => {
             return;
         }
 
-        // TODO: show validation messages
+        // TODO: show validation messages (need to hold obj in variable)
         console.log('ERROR', taskHasValidationError({ text, day }));
     }
 
