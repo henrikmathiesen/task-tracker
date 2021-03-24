@@ -56,15 +56,19 @@ const AddTask = ({ onSubmit, showAddTask }) => {
             <div className="row">
                 <div className="col-sm-6">
                     <label htmlFor="text">Task (required)</label>
-                    <textarea id="text" className="form-control AddTask-form-control-text" required disabled={!showAddTask} value={text} onChange={(e) => setText(e.target.value)} ref={textInputRef}></textarea>
-                    {textValidationMessage && <div className="text-danger">{textValidationMessage}</div>}
+                    <textarea id="text" className="form-control AddTask-form-control-text" required
+                        aria-invalid={!!textValidationMessage} aria-describedby={!!textValidationMessage ? 'text-validation-message' : ''}
+                        disabled={!showAddTask} value={text} onChange={(e) => setText(e.target.value)} ref={textInputRef}></textarea>
+                    {textValidationMessage && <div id="text-validation-message" className="text-danger">{textValidationMessage}</div>}
                 </div>
                 <div className="col-sm-6 mt-3 mt-sm-0">
                     <div className="row">
                         <div className="col">
                             <label htmlFor="day">Day (required, YYYY-MM-DD)</label>
-                            <input type="text" id="day" className="form-control AddTask-form-control-day" required disabled={!showAddTask} value={day} onChange={(e) => setDay(e.target.value)} />
-                            {dayValidationMessage && <div className="text-danger">{dayValidationMessage}</div>}
+                            <input type="text" id="day" className="form-control AddTask-form-control-day" required
+                                aria-invalid={!!dayValidationMessage} aria-describedby={!!dayValidationMessage ? 'day-validation-message' : ''}
+                                disabled={!showAddTask} value={day} onChange={(e) => setDay(e.target.value)} />
+                            {dayValidationMessage && <div id="day-validation-message" className="text-danger">{dayValidationMessage}</div>}
                         </div>
                     </div>
                     <div className="row mt-3">
