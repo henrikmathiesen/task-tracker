@@ -12,23 +12,32 @@ const AddTask = ({ onSubmit, showAddTask }) => {
     const [day, setDay] = useState('');
     const [reminder, setReminder] = useState(false);
 
+    const [textValidationMessage, setTextValidationMessage] = useState('');
+    const [dayValidationMessage, setdayValidationMessage] = useState('');
+
+    let validationErrors;
+
     const clearForm = () => {
         setText('');
         setDay('');
-        setReminder(false)
+        setReminder(false);
+        setTextValidationMessage('');
+        setdayValidationMessage('');
     };
 
     const onFormSubmit = (e) => {
         e.preventDefault();
 
-        if (!taskHasValidationError({ text, day })) { 
+        validationErrors = taskHasValidationError({ text, day });
+
+        if (!validationErrors) {
             onSubmit({ text, day, reminder });
             clearForm();
             return;
         }
 
-        // TODO: show validation messages (need to hold obj in variable)
-        console.log('ERROR', taskHasValidationError({ text, day }));
+        setTextValidationMessage(validationErrors.textValidationMessage);
+        setdayValidationMessage(validationErrors.dayValidationMessage);
     }
 
     useEffect(() => {
@@ -48,12 +57,14 @@ const AddTask = ({ onSubmit, showAddTask }) => {
                 <div className="col-sm-6">
                     <label htmlFor="text">Task (required)</label>
                     <textarea id="text" className="form-control AddTask-form-control-text" required disabled={!showAddTask} value={text} onChange={(e) => setText(e.target.value)} ref={textInputRef}></textarea>
+                    {textValidationMessage && <div className="text-danger">{textValidationMessage}</div>}
                 </div>
                 <div className="col-sm-6 mt-3 mt-sm-0">
                     <div className="row">
                         <div className="col">
                             <label htmlFor="day">Day (required, YYYY-MM-DD)</label>
                             <input type="text" id="day" className="form-control AddTask-form-control-day" required disabled={!showAddTask} value={day} onChange={(e) => setDay(e.target.value)} />
+                            {dayValidationMessage && <div className="text-danger">{dayValidationMessage}</div>}
                         </div>
                     </div>
                     <div className="row mt-3">
